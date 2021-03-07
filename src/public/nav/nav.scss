@@ -1,0 +1,97 @@
+.nav {
+    .site-header {
+        .container {
+            position: relative;
+            width: 1226px;
+            height: 100px;
+            margin: 0px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .header-logo {
+                width: 55px;
+                height: 55px;
+                background-color: #ff6700;
+                a {
+                    display: block;
+                    width: 55px;
+                    height: 55px;
+                    background: url("http://s02.mifile.cn/assets/static/image/mi-logo.png")
+                        no-repeat 50% 50%;
+                }
+            }
+            .header-nav {
+                .nav-list {
+                    padding: 0px;
+                    .nav-item {
+                        height: 100px;
+                        line-height: 100px;
+                        display: inline-block;
+                        font-size: 16px;
+                        list-style: none;
+                        padding: 0px 5px;
+                        transition: all 0.5s;
+                        &:first-of-type:hover {
+                            .site-category {
+                                display: block;
+                            }
+                        }
+
+                        &:hover {
+                            color: #ff7f00;
+                            .nav-children {
+                                height: 229px;
+                            }
+                        }
+                        .site-category {
+                            display: none;
+                            position: absolute;
+                            border: 1px solid #ff6700;
+                            top: 100px;
+                            left: 0px;
+                            width: 234px;
+                            height: 460px;
+                            z-index: 21;
+                            background-color: white;
+                            .category-list {
+                                padding: 40px 10px;
+                                .category-item {
+                                    height: 40 px;
+                                    line-height: 40px;
+                                    display: block;
+                                    font-size: 16px;
+                                    color: #424242;
+                                    cursor: pointer;
+                                    &:hover {
+                                        background: #ff7f00;
+                                        .category-children {
+                                            display: flex;
+                                        }
+                                    }
+
+                                    &:first-of-type {
+                                        margin-top: 0px;
+                                    }
+                                    span {
+                                        position: relative;
+                                        &::after {
+                                            content: ">";
+                                            position: absolute;
+                                            right: -100px;
+                                            font-size: 24px;
+                                            color: #e0e0e0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .header-search {
+                width: 200px;
+                // background-color: yellowgreen;
+            }
+        }
+    }
+}

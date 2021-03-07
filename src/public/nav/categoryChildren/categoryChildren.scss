@@ -1,0 +1,26 @@
+.category-children {
+    position: absolute;
+    top: 0;
+    left: 235px;
+    display: none;
+    background-color: yellow;
+    .category-col-list {
+        width: 248px;
+        height: 460px;
+        .category-col-item {
+            color: #424242;
+            width: 248px;
+            height: 76px;
+            display: inline-block;
+            display: flex;
+            align-items: center;
+            &:hover {
+                color: #ff9300;
+            }
+            img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    }
+}

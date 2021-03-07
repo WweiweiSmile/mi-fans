@@ -1,0 +1,84 @@
+.hero-goods {
+    margin-top: 14px;
+    margin-bottom: 20px;
+    .hero-goods-container {
+        width: 1226px;
+        height: 170px;
+        margin: 0px auto;
+        display: flex;
+        .channel {
+            width: 234px;
+            height: 170px;
+            .channel-list {
+                padding: 3px;
+                display: flex;
+                flex-wrap: wrap;
+                background: #5f5750;
+                .channel-item {
+                    width: 76px;
+                    height: 82px;
+                    text-align: center;
+                    color: #ffffff;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    opacity: 0.7;
+                    transition: all 0.5s;
+                    position: relative;
+                    cursor: pointer;
+                    &:hover {
+                        opacity: 1;
+                    }
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: -1px;
+                        left: 4px;
+                        width: 64px;
+                        height: 1px;
+                        background: #665e57;
+                    }
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 4px;
+                        left: -1px;
+                        width: 1px;
+                        height: 70px;
+                        background: #665e57;
+                    }
+                    img {
+                        width: 24px;
+                        height: 24px;
+                    }
+                    p {
+                        margin-top: 6px;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+        .goods {
+            width: 978px;
+            height: 170px;
+            margin-left: 14px;
+            .goods-list {
+                display: flex;
+
+                .goods-item {
+                    margin-left: 15px;
+                    width: 316px;
+                    height: 170px;
+                    &:first-of-type {
+                        margin-left: 0px;
+                    }
+                    img {
+                        width: 316px;
+                        height: 170px;
+                    }
+                }
+            }
+        }
+    }
+}
