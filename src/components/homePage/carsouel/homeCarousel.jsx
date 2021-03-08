@@ -16,7 +16,7 @@ function HomeCarousel() {
             <Carousel autoplay>
                 {carouselImg.map((item, index) => {
                     return (
-                        <div style={carouselStyle}>
+                        <div style={carouselStyle} key={index}>
                             <img src={item} alt='null' style={carouselStyle} />
                         </div>
                     );

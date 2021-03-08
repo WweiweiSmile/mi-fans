@@ -70,7 +70,6 @@ function CategoryChildren(props) {
         return (
             <ul className='category-col-list' key={index}>
                 {col.map((item, index) => {
-                    console.log(item);
                     return (
                         <li className='category-col-item' key={index}>
                             <img src={item.img}></img>

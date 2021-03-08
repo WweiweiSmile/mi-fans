@@ -65,7 +65,7 @@ let HeroGoods = () => {
                     <ul className='goods-list'>
                         {heroGoodsImg.map((item, index) => {
                             return (
-                                <li className='goods-item'>
+                                <li className='goods-item' key={index}>
                                     <a href='http://www.baidu.com'>
                                         <img src={item.img} alt='null' />
                                     </a>

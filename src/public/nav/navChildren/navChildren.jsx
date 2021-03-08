@@ -20,7 +20,7 @@ function NavChildren(props) {
                 <ul className='children-list'>
                     {goodsInfo.map((item, index) => {
                         return (
-                            <li className='children-item'>
+                            <li className='children-item' key={index}>
                                 <img src={item.img} alt={item.title}></img>
                                 <p className='title'>{item.title}</p>
                                 <p className='price'>{item.price}</p>
