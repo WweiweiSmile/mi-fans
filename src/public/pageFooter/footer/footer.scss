@@ -1,0 +1,139 @@
+.footer {
+    background: #fff;
+    .footer-container {
+        width: 1226px;
+        margin: 0px auto;
+        .footer-service {
+            padding: 27px 0px;
+            border-bottom: 1px solid #e0e0e0;
+            .list-service {
+                text-align: center;
+                display: flex;
+                justify-content: space-around;
+                .item-service {
+                    width: 245px;
+                    border-left: 1px solid #e0e0e0;
+                    &:first-of-type {
+                        border-left: none;
+                    }
+                    &:nth-of-type(1) a::before {
+                        background: url("../../../static/iconfont-tool.png");
+                    }
+                    &:nth-of-type(2) a::before {
+                        background: url("../../../static/iconfont-circle-7.png");
+                    }
+                    &:nth-of-type(3) a::before {
+                        background: url("../../../static/iconfont-circle-15.png");
+                    }
+                    &:nth-of-type(4) a::before {
+                        background: url("../../../static/iconfont-gift.png");
+                    }
+                    &:nth-of-type(5) a::before {
+                        background: url("../../../static/iconfont-localtion.png");
+                    }
+
+                    a {
+                        position: relative;
+                        margin-left: 30px;
+                        color: black;
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            left: -30px;
+                            top: -4px;
+                            width: 24px;
+                            height: 24px;
+                        }
+                    }
+                }
+            }
+        }
+        .links-contact {
+            padding: 40px 0px;
+            display: flex;
+            justify-content: space-between;
+            font-family: "Microsoft Yahei";
+            .footer-links {
+                display: flex;
+                justify-content: left;
+                .col-links {
+                    width: 160px;
+                    dt {
+                        margin: 0px 0px 26px;
+                        font-size: 14px;
+                        color: #424242;
+                        cursor: pointer;
+                    }
+                    dd {
+                        margin-bottom: 10px;
+                        font-size: 12px;
+                        color: #757575;
+                        cursor: pointer;
+                    }
+                    dd:hover {
+                        color: #ff6700;
+                    }
+                }
+            }
+            .footer-contact {
+                width: 245px;
+                display: flex;
+                justify-content: center;
+                position: relative;
+                border-left: 1px solid #e0e0e0;
+                dt {
+                    text-align: center;
+                    font-size: 20px;
+                    color: #ff6752;
+                }
+                dd {
+                    margin-top: 10px;
+                }
+                .work-time {
+                    font-size: 12px;
+                    color: #616161;
+                }
+                .person-serve {
+                    text-align: center;
+                    line-height: 30px;
+                    height: 30px;
+                    font-size: 14px;
+
+                    border: 1px solid #ff6752;
+                    a {
+                        color: #ff6752;
+                    }
+                    i {
+                        vertical-align: middle;
+                        display: inline-block;
+                        width: 14px;
+                        height: 14px;
+                        background: url("../../../static/iconfont-messge.png")
+                            no-repeat 50% 50%;
+                    }
+                }
+                .attention-mi {
+                    font-size: 14px;
+                    color: #616161;
+                    a {
+                        &:nth-of-type(1) i {
+                            background: url("../../../static/iconfont-xinlang-grey.png")
+                                no-repeat 50% 50%;
+                        }
+                        &:nth-of-type(2) i {
+                            background: url("../../../static/iconfont-weixin-grey.png")
+                                no-repeat 50% 50%;
+                        }
+                        i {
+                            margin-left: 5px;
+                            vertical-align: middle;
+                            display: inline-block;
+                            width: 24px;
+                            height: 24px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

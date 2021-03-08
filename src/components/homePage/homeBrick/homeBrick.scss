@@ -13,16 +13,46 @@
             .more {
                 font-size: 20px;
             }
+            .title-list {
+                display: flex;
+                .title-item {
+                    margin-left: 20px;
+                    cursor: pointer;
+
+                    &:first-of-type {
+                        margin-left: 0px;
+                    }
+                    .active {
+                        transition: all 0.1s;
+                        color: #ff6700;
+                        border-bottom: 3px solid #ff6700;
+                    }
+                }
+            }
         }
         .brick-box {
             display: flex;
             .banner-list {
-                .banner-item {
+                .banner-item-phone {
                     position: relative;
                     left: 0px;
                     top: 0px;
                     width: 234px;
                     height: 614px;
+                    transition: all 0.2s;
+                    &:hover {
+                        left: 0px;
+                        top: -3px;
+                        box-shadow: 0px 10px 15px #d4d4d4;
+                    }
+                }
+                .banner-item {
+                    position: relative;
+                    left: 0px;
+                    top: 0px;
+                    margin-bottom: 14px;
+                    width: 234px;
+                    height: 300px;
                     transition: all 0.2s;
                     &:hover {
                         left: 0px;
@@ -50,6 +80,9 @@
                     left: 0px;
                     top: 0px;
                     transition: all 0.2s;
+                    a {
+                        color: #000;
+                    }
                     &:hover {
                         left: 0px;
                         top: -3px;
