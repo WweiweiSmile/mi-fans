@@ -1,0 +1,31 @@
+.shop-detail {
+    background: #f5f5f5;
+    .nav-bar {
+        background: #fff;
+        box-shadow: 0px 3px 10px #e0e0e0;
+        margin-bottom: 20px;
+        .detail-nav-bar {
+            width: 1226px;
+            margin: 0px auto;
+            display: flex;
+            justify-content: space-between;
+            line-height: 60px;
+            font-family: "微软雅黑";
+
+            .title {
+                font-size: 20px;
+            }
+            .con {
+                padding: 0px 10px;
+                border-left: 2px solid #e0e2e8;
+                color: #616161;
+                &:first-of-type {
+                    border-left: none;
+                }
+                &:hover {
+                    color: #ff6700;
+                }
+            }
+        }
+    }
+}

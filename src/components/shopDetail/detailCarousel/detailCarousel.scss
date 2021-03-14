@@ -1,0 +1,47 @@
+.detail-carousel {
+    .ant-carousel {
+        .slick-dots {
+            .slick-active {
+                button {
+                    background: #000;
+                }
+            }
+            li {
+                position: relative;
+                display: inline-block;
+                -ms-flex: 0 1 auto;
+                flex: 0 1 auto;
+                -webkit-box-sizing: content-box;
+                box-sizing: content-box;
+                width: 40px;
+                height: 3px;
+                margin: 0 2px;
+                margin-right: 3px;
+                margin-left: 3px;
+                padding: 0;
+                text-align: center;
+                text-indent: -999px;
+                vertical-align: top;
+                -webkit-transition: all 0.5s;
+                transition: all 0.5s;
+
+                button {
+                    display: block;
+                    width: 100%;
+                    height: 3px;
+                    padding: 0;
+                    color: transparent;
+                    font-size: 0;
+                    background: #888;
+                    border: 0;
+                    border-radius: 1px;
+                    outline: none;
+                    cursor: pointer;
+                    opacity: 0.3;
+                    -webkit-transition: all 0.5s;
+                    transition: all 0.5s;
+                }
+            }
+        }
+    }
+}
