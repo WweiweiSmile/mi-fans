@@ -1,0 +1,26 @@
+.reply-input {
+    .ant-input-group-wrapper {
+        .ant-input-wrapper {
+            .ant-input-affix-wrapper-focused {
+                box-shadow: 0px 0px 2px 1px #e0e0e0;
+                &:hover {
+                    border-color: #e0e0e0;
+                }
+                border-color: #e0e0e0;
+            }
+            .ant-input-affix-wrapper {
+                &:hover {
+                    border-color: #e0e0e0;
+                }
+                border-color: #e0e0e0;
+            }
+            .ant-input-group-addon {
+                .ant-btn-primary {
+                    background: #ffffff;
+                    border-color: #e0e0e0;
+                    color: #757575;
+                }
+            }
+        }
+    }
+}
