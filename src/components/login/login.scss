@@ -1,0 +1,98 @@
+.login {
+    .login-header {
+        width: 1226px;
+        margin: 0px auto;
+        .header-logo {
+            width: 200px;
+            height: 98px;
+            background: url(https://account.xiaomi.com/static/res/7f6f2f5/account-static/respassport/acc-2014/img/mistore_logo.png)
+                no-repeat;
+            a {
+                display: block;
+                height: 98px;
+            }
+        }
+    }
+    .login-content {
+        height: 588px;
+        background-image: url("https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/72644d9b8031286de3cc74e151aefd90.jpg");
+        background-position: top center;
+        .content-container {
+            width: 1226px;
+            height: 588px;
+            margin: 0px auto;
+            position: relative;
+            .login-banner {
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
+                width: 410px;
+                height: 400px;
+                background: #fff;
+                padding: 20px 20px 0px 20px;
+                .title {
+                    display: flex;
+                    justify-content: space-between;
+                    line-height: 80px;
+                    span {
+                        position: relative;
+                        color: #666666;
+                        font-size: 24px;
+                        padding: 0px 30px;
+                        cursor: pointer;
+                        &:first-of-type::before {
+                            content: "";
+                            position: absolute;
+                            width: 2px;
+                            height: 30px;
+                            background: #e0e0e0;
+                            top: 25px;
+                            right: -30px;
+                        }
+                    }
+                    .active {
+                        color: #ff6700;
+                    }
+                }
+                .input {
+                    margin-top: 20px;
+                }
+                .btn {
+                    cursor: pointer;
+                    margin-top: 20px;
+                    height: 50px;
+                    line-height: 50px;
+                    text-align: center;
+                    color: #fff;
+                    background: #ff6700;
+                }
+                .forget-possword {
+                    margin-top: 20px;
+                    text-align: center;
+                    color: #a1a1a3;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .login-footer {
+        .footer-container {
+            width: 1226px;
+            margin: 0px auto;
+            padding: 70px 0px 0px 0px;
+            p {
+                text-align: center;
+                margin-bottom: 20px;
+                color: #757575;
+                span {
+                    padding: 0px 20px;
+                    cursor: pointer;
+                    border-left: 1px solid #a1a1a3;
+                    &:first-of-type {
+                        border: none;
+                    }
+                }
+            }
+        }
+    }
+}

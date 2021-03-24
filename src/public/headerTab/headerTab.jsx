@@ -2,7 +2,7 @@ import "./headerTab.scss";
 let HeaderTab = () => {
     return (
         <div className='header-tab'>
-            <div className='header-poster'></div>
+            {/* <div className='header-poster'></div> */}
             <div className='top-bar'>
                 <div className='container'>
                     <div className='top-bar-nav'>

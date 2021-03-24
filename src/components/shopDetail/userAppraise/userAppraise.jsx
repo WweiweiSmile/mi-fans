@@ -66,13 +66,37 @@ let UserAppraise = () => {
                                             // onSearch={onSearch}
                                         />
                                     </div>
-                                    <div className='comment-list'></div>
+                                    <div className='comment-list'>
+                                        <div className='comment-item'>
+                                            <div className='comment-avatar'>
+                                                <img
+                                                    src='//s01.mifile.cn/i/logo.png'
+                                                    alt='null'
+                                                />
+                                            </div>
+                                            <div className='comment-content'>
+                                                <span>官方回复</span>
+                                                <p>
+                                                    您好，感谢您一路的陪伴与支持，我们会认真听取米粉的意见不断改进的，会加倍努力带给米粉们更好的产品。产品使用中有问题您可以联系客服协助处理。小米祝您生活愉快、家庭幸福
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
-                        <div className='more'></div>
+                        <div className='more'>加载更多</div>
                     </div>
-                    <div className='mid-right'></div>
+                    <div className='mid-right'>
+                        <div className='right-top'>
+                            <span className='person-num'>555691</span>
+                            人购买后满意
+                        </div>
+                        <div className='right-satisfaction'>
+                            <span className='font'>满意度:96.7%</span>
+                            <div className='bg'></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

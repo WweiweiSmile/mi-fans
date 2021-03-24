@@ -32,6 +32,8 @@
         }
         .comment-mid {
             margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
             .mid-left {
                 width: 792px;
                 .top-left {
@@ -124,7 +126,79 @@
                             .reply {
                                 margin-top: 10px;
                             }
+                            .comment-list {
+                                margin-top: 30px;
+                                .comment-item {
+                                    margin-bottom: 20px;
+                                    display: flex;
+                                    justify-content: left;
+                                    .comment-avatar {
+                                        margin-right: 20px;
+                                        img {
+                                            width: 32px;
+                                            height: 32px;
+                                        }
+                                    }
+                                    .comment-content {
+                                        span {
+                                            font-size: 14px;
+                                        }
+                                        p {
+                                            font-size: 14px;
+                                            margin-top: 5px;
+                                        }
+                                    }
+                                }
+                            }
                         }
+                    }
+                }
+                .more {
+                    margin: 20px 0px;
+                    text-align: center;
+                    width: 100%;
+                    height: 45px;
+                    line-height: 45px;
+                    color: #ff7f52;
+                    cursor: pointer;
+                    background: #fff;
+                }
+            }
+            .mid-right {
+                width: 420px;
+                margin-top: 60px;
+                padding: 22px 30px 40px;
+                background: #fff;
+                height: 200px;
+                .right-top {
+                    text-align: center;
+                    color: #c2b0c2;
+                    .person-num {
+                        font-size: 70px;
+                        color: #ff6700;
+                    }
+                }
+                .right-satisfaction {
+                    position: relative;
+                    text-align: center;
+                    height: 21px;
+                    background: #eee;
+                    .font {
+                        position: absolute;
+                        left: 50%;
+                        top: 0px;
+                        transform: translate(-50%, 0px);
+                        z-index: 2;
+                        color: #fff;
+                    }
+                    .bg {
+                        position: absolute;
+                        left: 0px;
+                        top: 0px;
+                        width: 70%;
+                        height: 21px;
+                        z-index: 1;
+                        background: #83c44e;
                     }
                 }
             }

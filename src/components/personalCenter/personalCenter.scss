@@ -1,0 +1,18 @@
+.personal-center {
+    background: #f5f5f5;
+    .personal-container {
+        padding-top: 20px;
+        width: 1226px;
+        margin: 0px auto;
+        display: flex;
+        justify-content: space-between;
+        .left-sider {
+            width: 234px;
+        }
+        .content {
+            width: 978px;
+            margin-left: 14px;
+            // background: #fff;
+        }
+    }
+}

@@ -1,0 +1,73 @@
+.my-personal-center {
+    background: #fff;
+    padding: 36px 48px;
+    .protal-main {
+        display: flex;
+        justify-content: left;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #e0e0e0;
+        .avatar {
+            width: 160px;
+            height: 160px;
+        }
+        .person-summary {
+            margin-left: 30px;
+            width: 200px;
+            padding: 40px 0px;
+            .user {
+                font-size: 30px;
+            }
+            .time {
+                font-size: 12px;
+                color: #b0b7cc;
+            }
+            .modify-info {
+                margin-top: 10px;
+                font-size: 12px;
+                color: #ff6700;
+            }
+        }
+        .user-info {
+            margin-left: 40px;
+            padding: 40px 0px;
+            p {
+                font-size: 14px;
+                line-height: 30px;
+                color: #757575;
+            }
+        }
+    }
+    .protal-content {
+        padding: 36px 48px;
+        ul {
+            display: flex;
+            justify-content: left;
+            flex-wrap: wrap;
+            li {
+                margin-right: 120px;
+                margin-bottom: 60px;
+                display: flex;
+                justify-content: left;
+                .item-avatar {
+                    width: 100px;
+                    height: 100px;
+                }
+                .item-detail {
+                    margin-left: 20px;
+                    color: #757575;
+                    padding: 20px 0px;
+                    h3 {
+                        color: #757575;
+                        font-size: 20px;
+                        .num {
+                            color: #ff6700;
+                        }
+                    }
+                    p {
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
