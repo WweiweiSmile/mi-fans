@@ -6,7 +6,17 @@ import HeroGoods from "./heroGoods/heroGoods";
 import HomeBanner from "./homeBanner/homeBanner";
 import HomeBrick from "./homeBrick/homeBrick";
 import PageFooter from "../../public/pageFooter/pageFooter";
-function HomePage() {
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actiontor } from "../../redux/homePage";
+import { useState, useEffect } from "react";
+function HomePage(props) {
+    useEffect(() => {
+        props.getUser();
+        props.getHeroGoods();
+    }, []);
+
+    console.log(props);
     return (
         <div className='HomePage'>
             <HeaderTab></HeaderTab>
@@ -25,4 +35,9 @@ function HomePage() {
         </div>
     );
 }
-export default HomePage;
+export default connect(
+    ({ HomePage }) => ({
+        ...HomePage,
+    }),
+    (dispatch, ownProps) => bindActionCreators(actiontor, dispatch)
+)(HomePage);

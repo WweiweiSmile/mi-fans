@@ -1,5 +1,5 @@
 import "./headerTab.scss";
-let HeaderTab = () => {
+let HeaderTab = (props) => {
     return (
         <div className='header-tab'>
             {/* <div className='header-poster'></div> */}

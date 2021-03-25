@@ -56,8 +56,9 @@
                             z-index: 21;
                             background-color: white;
                             .category-list {
-                                padding: 40px 10px;
+                                padding: 40px 0px;
                                 .category-item {
+                                    padding: 0px 10px;
                                     height: 40 px;
                                     line-height: 40px;
                                     display: block;
@@ -91,7 +92,7 @@
                 }
             }
             .header-search {
-                width: 200px;
+                width: 300px;
                 // background-color: yellowgreen;
             }
         }

@@ -1,0 +1,31 @@
+.personal-info {
+    padding: 36px 48px;
+    background: #fff;
+    .bg-box {
+        height: 400px;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        .avatar {
+            margin-left: 200px;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .basic-info {
+            margin-left: 200px;
+            h3 {
+                font-size: 20px;
+                font-weight: 800;
+            }
+            p {
+                margin-top: 20px;
+                font-size: 14px;
+                color: #757575;
+            }
+        }
+    }
+}

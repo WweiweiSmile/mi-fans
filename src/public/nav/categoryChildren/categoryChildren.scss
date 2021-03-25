@@ -1,9 +1,10 @@
 .category-children {
     position: absolute;
-    top: 0;
-    left: 235px;
+    top: -1px;
+    left: 233px;
     display: none;
-    background-color: yellow;
+    border: 1px solid #ff6700;
+    background-color: rgba($color: #fff, $alpha: 1);
     .category-col-list {
         width: 248px;
         height: 460px;

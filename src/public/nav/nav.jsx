@@ -67,7 +67,7 @@ function Nav() {
                             </ul>
                         </div>
                         <div className='header-search'>
-                            <Search style={{ width: 200 }}></Search>
+                            <Search style={{ width: 300 }}></Search>
                         </div>
                     </div>
                 </div>
