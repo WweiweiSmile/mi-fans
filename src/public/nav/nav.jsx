@@ -1,10 +1,20 @@
 import "./nav.scss";
 import CategoryChildren from "./categoryChildren/categoryChildren";
 import NavChildren from "./navChildren/navChildren";
+import {actiontor} from "../../redux/nav"
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { Input } from "antd";
-function Nav() {
-    const { Search } = Input;
+import {useState,useEffect} from "react";
 
+const { Search } = Input;
+
+function Nav(props) {
+    console.log(props,'nav')
+    useEffect(()=>{
+        props.getMiPhone();
+        props.getRedmiPhone();
+    },[])
     return (
         <div className='nav'>
             <header>
@@ -21,49 +31,51 @@ function Nav() {
                                         <ul className='category-list'>
                                             <li className='category-item'>
                                                 <span>手机 电话卡</span>
+                                                <CategoryChildren goodsInfo={props.phoneData}></CategoryChildren>
                                             </li>
                                             <li className='category-item'>
-                                                <span>手机 电话卡</span>
-                                                <CategoryChildren></CategoryChildren>
+                                                <span>电视 盒子</span>
                                             </li>
                                             <li className='category-item'>
-                                                <span>手机 电话卡</span>
+                                                <span>笔记本 显示器</span>
                                             </li>
                                             <li className='category-item'>
-                                                <span>手机 电话卡</span>
+                                                <span>家电插线板</span>
                                             </li>
                                             <li className='category-item'>
-                                                <span>手机 电话卡</span>
+                                                <span>出行 穿戴</span>
                                             </li>
                                             <li className='category-item'>
-                                                <span>手机 电话卡</span>
+                                                <span>智能 路由器</span>
                                             </li>
                                             <li className='category-item'>
-                                                <span>手机 电话卡</span>
+                                                <span>电源 配件</span>
                                             </li>
                                             <li className='category-item'>
-                                                <span>手机 电话卡</span>
+                                                <span>健康 儿童</span>
                                             </li>
                                             <li className='category-item'>
-                                                <span>手机 电话卡</span>
+                                                <span>耳机 音箱</span>
                                             </li>
                                             <li className='category-item'>
-                                                <span>手机 电话卡</span>
+                                                <span>生活 箱包</span>
                                             </li>
                                         </ul>
                                     </div>
                                 </li>
                                 <li className='nav-item'>
                                     小米手机
-                                    <NavChildren></NavChildren>
+                                    <NavChildren goodsInfo={props.miPhoneData}></NavChildren>
                                 </li>
-                                <li className='nav-item'>小米手机</li>
-                                <li className='nav-item'>小米手机</li>
-                                <li className='nav-item'>小米手机</li>
-                                <li className='nav-item'>小米手机</li>
-                                <li className='nav-item'>小米手机</li>
-                                <li className='nav-item'>小米手机</li>
-                                <li className='nav-item'>小米手机</li>
+                                <li className='nav-item'>Redmi 红米
+                                    <NavChildren goodsInfo={props.redmiPhoneData}></NavChildren></li>
+                                <li className='nav-item'>电视</li>
+                                <li className='nav-item'>笔记本</li>
+                                <li className='nav-item'>家电</li>
+                                <li className='nav-item'>路由器</li>
+                                <li className='nav-item'>智能硬件</li>
+                                <li className='nav-item'>智能硬件</li>
+
                             </ul>
                         </div>
                         <div className='header-search'>
@@ -75,4 +87,9 @@ function Nav() {
         </div>
     );
 }
-export default Nav;
+export default connect(
+    ({ nav,HomePage }) => ({
+        ...nav,...HomePage
+    }),
+    (dispatch, ownProps) => bindActionCreators(actiontor, dispatch)
+)(Nav);

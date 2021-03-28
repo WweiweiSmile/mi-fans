@@ -11,25 +11,28 @@ import { bindActionCreators } from "redux";
 import { actiontor } from "../../redux/homePage";
 import { useState, useEffect } from "react";
 function HomePage(props) {
+    console.log(props)
     useEffect(() => {
-        props.getUser();
         props.getHeroGoods();
+        props.getSwiper();
+        props.getBanner();
+        props.getPhone();
+        props.getTelevision();
+        props.getLaptop();
     }, []);
-
-    console.log(props);
     return (
         <div className='HomePage'>
             <HeaderTab></HeaderTab>
             <Nav></Nav>
-            <HomeCarousel></HomeCarousel>
-            <HeroGoods></HeroGoods>
+            <HomeCarousel swiper={props.swiperData}></HomeCarousel>
+            <HeroGoods heroGoods={props.heroGoodsData}></HeroGoods>
             <div className='home-content'>
-                <HomeBanner></HomeBanner>
-                <HomeBrick state='手机'></HomeBrick>
-                <HomeBanner></HomeBanner>
-                <HomeBrick state='家电'></HomeBrick>
-                <HomeBanner></HomeBanner>
-                <HomeBrick state='智能'></HomeBrick>
+                <HomeBanner banner={props.bannerData.data}  type="phone"></HomeBanner>
+                <HomeBrick state='手机'  brickGoodsData={[props.phoneData]} titleListData={['手机']}></HomeBrick>
+                <HomeBanner banner={props.bannerData.data} type={"homeAppliance"}></HomeBanner>
+                <HomeBrick state='家电'  brickGoodsData={[props.televisionData]} titleListData={['电视']}></HomeBrick>
+                <HomeBanner banner={props.bannerData.data} type={"ai"}></HomeBanner>
+                <HomeBrick state='智能'  brickGoodsData={[props.laptopData]} titleListData={['出行']}></HomeBrick>
             </div>
             <PageFooter></PageFooter>
         </div>

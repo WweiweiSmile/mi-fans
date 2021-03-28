@@ -1,5 +1,5 @@
 import "./heroGoods.scss";
-let HeroGoods = () => {
+let HeroGoods = (props) => {
     const channelImg = [
         {
             img:
@@ -32,20 +32,10 @@ let HeroGoods = () => {
             title: "话费充值",
         },
     ];
-    const heroGoodsImg = [
-        {
-            img:
-                "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/5d4298059889417157e8492750328492.jpg?w=632&h=340",
-        },
-        {
-            img:
-                "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8a43378b96501d7e227a9018fe2668c5.jpg?w=632&h=340",
-        },
-        {
-            img:
-                "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/793913688bfaee26b755a0b0cc8575fd.jpg?w=632&h=340",
-        },
-    ];
+    let heroGoodsImg = [];
+    if (props.heroGoods.data){
+        heroGoodsImg = props.heroGoods.data
+    }
     return (
         <div className='hero-goods'>
             <div className='hero-goods-container'>
@@ -67,7 +57,7 @@ let HeroGoods = () => {
                             return (
                                 <li className='goods-item' key={index}>
                                     <a href='http://www.baidu.com'>
-                                        <img src={item.img} alt='null' />
+                                        <img src={item.imgUrl} alt='null' />
                                     </a>
                                 </li>
                             );

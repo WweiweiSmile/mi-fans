@@ -5,6 +5,7 @@ import BuyCar from "./components/buyCar/buyCar";
 import Login from "./components/login/login.jsx";
 import PersonalCenter from "./components/personalCenter/personalCenter.jsx";
 import { Switch, Route } from "react-router-dom";
+
 function App() {
     console.log("App");
     return (
