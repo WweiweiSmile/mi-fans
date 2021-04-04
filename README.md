@@ -68,3 +68,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+技术栈: 
+redux: 管理数状态
+redux-actions : 用于 创建reducer 和 创建 action (异步情况 通过编写中间件进行处理)
+antd: ui库
+react-router-dom : 管理react的路由
