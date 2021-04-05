@@ -1,22 +1,23 @@
 import "./login.scss";
-import {Form, Input, message} from "antd";
-import {connect} from "react-redux";
-import {actiontor} from "../../redux/login";
-import {bindActionCreators} from "redux";
-import {useEffect, useRef, useState} from "react";
-
+import { Form, Input, message } from "antd";
+import { connect } from "react-redux";
+import { actiontor } from "../../redux/login";
+import { bindActionCreators } from "redux";
+import { useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 function Login(props) {
-    console.log(props)
+    console.log(props);
     let [isRegister, setIsRegister] = useState(false);
-    let [user, setUser] = useState({})
+    let [user, setUser] = useState({});
     let [form] = Form.useForm();
+    let history = useHistory();
     console.log(props);
     // compentUpdate
-    let isFirstRegister = useRef(true)
-    let isFirstLogin = useRef(true)
+    let isFirstRegister = useRef(true);
+    let isFirstLogin = useRef(true);
     useEffect(() => {
         if (isFirstRegister.current) {
-            isFirstRegister.current = false
+            isFirstRegister.current = false;
             return;
         }
         if (props.registerData.code === 1000) {
@@ -27,16 +28,19 @@ function Login(props) {
     }, [props.registerData]);
     useEffect(() => {
         if (isFirstLogin.current) {
-            isFirstLogin.current = false
+            isFirstLogin.current = false;
             return;
         }
         if (props.loginData.code === 1000) {
             message.success("登录成功");
-            props.getUser(user)
+            props.getUser(user);
+            setTimeout(() => {
+                history.push("/homePage");
+            }, 1000);
         } else if (props.loginData.code === 2000) {
             message.error("登录失败");
         }
-    }, [props.loginData])
+    }, [props.loginData]);
 
     let registerChange = (state) => {
         setIsRegister(state);
@@ -48,7 +52,6 @@ function Login(props) {
             return;
         }
         props.login(user);
-
     };
     return (
         <div className='login'>
@@ -74,7 +77,6 @@ function Login(props) {
                                     registerChange(true);
                                 }}
                                 className={isRegister ? "active" : ""}
-
                             >
                                 账号注册
                             </span>
@@ -84,14 +86,14 @@ function Login(props) {
                                 <Input
                                     className='input'
                                     placeholder='请输入账号'
-                                    style={{height: "50px"}}
+                                    style={{ height: "50px" }}
                                 ></Input>
                             </Form.Item>
                             <Form.Item name='pwd'>
                                 <Input
                                     className='input'
                                     placeholder='请输入密码'
-                                    style={{height: "50px"}}
+                                    style={{ height: "50px" }}
                                     type='password'
                                 ></Input>
                             </Form.Item>
@@ -123,6 +125,6 @@ function Login(props) {
 }
 
 export default connect(
-    ({Login}) => ({...Login}),
+    ({ Login }) => ({ ...Login }),
     (dispatch, ownProps) => bindActionCreators(actiontor, dispatch)
 )(Login);

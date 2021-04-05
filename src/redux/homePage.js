@@ -1,5 +1,5 @@
-import {createActions, handleActions} from "redux-actions";
-import {combineReducers} from "redux";
+import { createActions, handleActions } from "redux-actions";
+import { combineReducers } from "redux";
 import axios from "axios";
 
 export const actiontor = createActions({
@@ -29,24 +29,48 @@ export const actiontor = createActions({
     },
 });
 
+const heroGoodsData = handleActions(
+    {
+        get_hero_goods: (state, { payload }) => payload,
+    },
+    {}
+);
 
-const heroGoodsData = handleActions({
-    get_hero_goods: (state, {payload}) => payload,
-}, {});
-
-const swiperData = handleActions({
-    get_swiper: (state, {payload}) => payload,
-}, {})
-const bannerData = handleActions({
-    get_banner: (state, {payload}) => payload,
-}, {})
-const phoneData = handleActions({
-    get_phone: (state, {payload}) => payload,
-}, {})
-const televisionData = handleActions({
-    get_television: (state, {payload}) => payload,
-}, {})
-const laptopData = handleActions({
-    get_laptop: (state, {payload}) => payload,
-}, {})
-export default combineReducers({heroGoodsData, swiperData, bannerData, phoneData, televisionData, laptopData});
+const swiperData = handleActions(
+    {
+        get_swiper: (state, { payload }) => payload,
+    },
+    {}
+);
+const bannerData = handleActions(
+    {
+        get_banner: (state, { payload }) => payload,
+    },
+    {}
+);
+const phoneData = handleActions(
+    {
+        get_phone: (state, { payload }) => payload,
+    },
+    {}
+);
+const televisionData = handleActions(
+    {
+        get_television: (state, { payload }) => payload,
+    },
+    {}
+);
+const laptopData = handleActions(
+    {
+        get_laptop: (state, { payload }) => payload,
+    },
+    {}
+);
+export default combineReducers({
+    heroGoodsData,
+    swiperData,
+    bannerData,
+    phoneData,
+    televisionData,
+    laptopData,
+});

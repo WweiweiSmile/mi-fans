@@ -1,6 +1,6 @@
 import "./homeBrick.scss";
-import {useState} from "react";
-
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 let HomeBrick = (props) => {
     let brickGoodsData = [
         [
@@ -76,25 +76,25 @@ let HomeBrick = (props) => {
                 summary: "骁龙888 / E4 旗舰直屏",
                 price: "2799元起",
             },
-        ]
+        ],
     ];
-    if(props?.brickGoodsData && props?.brickGoodsData[0]?.data){
-        props.brickGoodsData.map((item,index)=>{
+    let history = useHistory();
+    if (props?.brickGoodsData && props?.brickGoodsData[0]?.data) {
+        props.brickGoodsData.map((item, index) => {
             brickGoodsData[index] = item.data;
-        })
-
+        });
     }
     let titleListData = props.titleListData;
     let state = props.state;
     let brickBannerData =
         state === "手机"
             ? [
-                "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/cb1bd61ad71c45a4f67f09b075463944.jpeg?thumb=1&w=234&h=614&f=webp&q=90",
-            ]
+                  "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/cb1bd61ad71c45a4f67f09b075463944.jpeg?thumb=1&w=234&h=614&f=webp&q=90",
+              ]
             : [
-                "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/116fc43816b87192be4e67cf762e8da5.jpeg?thumb=1&w=234&h=300&f=webp&q=90",
-                "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/1e82177bd8c8cd140e0e582ecaa886dc.jpg?thumb=1&w=234&h=300&f=webp&q=90",
-            ];
+                  "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/116fc43816b87192be4e67cf762e8da5.jpeg?thumb=1&w=234&h=300&f=webp&q=90",
+                  "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/1e82177bd8c8cd140e0e582ecaa886dc.jpg?thumb=1&w=234&h=300&f=webp&q=90",
+              ];
     // const [brickBanner, setBrickBanner] = useState([]);
 
     const [titleIndex, setTitleIndex] = useState(0);
@@ -111,7 +111,6 @@ let HomeBrick = (props) => {
                         <span
                             className={titleIndex === index ? "active" : ""}
                             onMouseMove={() => {
-
                                 setTitleIndex(index);
                             }}
                         >
@@ -141,7 +140,7 @@ let HomeBrick = (props) => {
                                             : "banner-item"
                                     }
                                 >
-                                    <img src={item} alt='null'/>
+                                    <img src={item} alt='null' />
                                 </li>
                             );
                         })}
@@ -150,7 +149,14 @@ let HomeBrick = (props) => {
                         {brickGoodsData[titleIndex].map((item, index) => {
                             return (
                                 <li className='brick-item' key={index}>
-                                    <a href='https://www.mi.com/redmik40ultra-k40pro'>
+                                    <a
+                                        href='#'
+                                        onClick={(e) => {
+                                            history.push(
+                                                `/shopDetail/${item._id}`
+                                            );
+                                        }}
+                                    >
                                         <img src={item.imgUrl}></img>
                                         <p className='brick-title'>
                                             {item.title}

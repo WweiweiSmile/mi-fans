@@ -1,13 +1,41 @@
 import "./myOrder.scss";
+import { connect } from "react-redux";
+import { actiontor } from "../../../redux/login";
+import { actiontor as actiontorOrder } from "../../../redux/myOrder";
+import { bindActionCreators } from "redux";
 import { Input } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 const { Search } = Input;
-let MyOrder = () => {
+const action = { ...actiontor, ...actiontorOrder };
+let MyOrder = (props) => {
+    console.log(props, "MyOrder");
+    let history = useHistory();
     //  orderState 0:等待付款 1:待收货 2:已收货
-    let [orderState, setOrderState] = useState(2);
+    let [orderState, setOrderState] = useState(0);
     // 等待付款  ,待收货, 已收货
-    let orderStates = ["wait-pay", "wait-goods", "have-goods"];
-    let orderStateWord = ["等待付款", "待收货", "已收货"];
+    let orderStates = [
+        "have-goods",
+        "wait-pay",
+        "wait-goods",
+        "wait-goods",
+        "have-goods",
+    ];
+
+    let orderStateWord = ["已取消", "下单", "已付款", "发货", "签收完成"];
+    let orders = [];
+    let userId = "";
+    if (JSON.stringify(props.userData) !== "{}") {
+        userId = props.userData.data[0]._id;
+    }
+    if (JSON.stringify(props.orderData) !== "{}") {
+        orders = props.orderData.data;
+    }
+    useEffect(() => {
+        props.getOrder(userId);
+    }, [props.userData]);
+
+    console.log(orders, "orders");
     return (
         <div className='my-order'>
             <p className='title'>
@@ -25,49 +53,113 @@ let MyOrder = () => {
                 </div>
             </div>
             <div className='order-list'>
-                <div className={`order-item ${orderStates[orderState]}`}>
-                    <div className='title-row'>
-                        <p className='title'>{orderStateWord[orderState]}</p>
-                        <div className='summary-row'>
-                            <p className='summary'>
-                                <span>2021年03月22日 22:16</span>
-                                <span>秦巍</span>
-                                <span>订单号:332432423324232</span>
-                                <span>在线支付</span>
-                            </p>
-                            <p className='price'>
-                                应付金额:
-                                <span className='important'>599.00元</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div className='order-content'>
-                        <div className='shop'>
-                            <img
-                                src='//cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1595400896.0831679.jpg?thumb=1&w=80&h=80'
-                                alt='null'
-                                className='shop-img'
-                            />
-                            <div className='shop-summary'>
-                                <p>Redmi 9A 4GB+64GB 砂石黑</p>
-                                <p>599元 x 1</p>
+                {orders.map((item, index) => {
+                    let address = item.address;
+                    let goods = item.goods;
+                    let sumPrice = 0;
+                    goods.map((item, index) => {
+                        sumPrice += item.price * item.buyQuantity;
+                    });
+                    let isAllAppraise = goods.every((item, index) => {
+                        return !item.isAppraise;
+                    });
+                    return (
+                        <div
+                            className={`order-item ${orderStates[item.status]}`}
+                            key={index}
+                        >
+                            <div className='title-row'>
+                                <p className='title'>
+                                    {orderStateWord[item.status]}
+                                </p>
+                                <div className='summary-row'>
+                                    <p className='summary'>
+                                        <span>{item.date}</span>
+                                        <span>{address.name}</span>
+                                        <span>订单号:{item._id}</span>
+                                        <span>在线支付</span>
+                                    </p>
+                                    <p className='price'>
+                                        应付金额:
+                                        <span className='important'>
+                                            {sumPrice}元
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div className='order-content'>
+                                <div className='shop-list'>
+                                    {goods.map((gItem, gIndex) => {
+                                        return (
+                                            <div className='shop' key={gIndex}>
+                                                <img
+                                                    src={gItem.imgUrl}
+                                                    alt='null'
+                                                    className='shop-img'
+                                                />
+                                                <div className='shop-summary'>
+                                                    <p>
+                                                        {gItem.title +
+                                                            "  " +
+                                                            gItem.color[
+                                                                gItem
+                                                                    .colorChoose
+                                                            ].color +
+                                                            "  " +
+                                                            gItem.vision[
+                                                                gItem
+                                                                    .visionChoose
+                                                            ].vision}
+                                                    </p>
+                                                    <p>
+                                                        {gItem.price}元 x{" "}
+                                                        {gItem.buyQuantity}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                                <div className='btns'>
+                                    {item.status === 1 ? (
+                                        <a className='promptly-pay'>立即付款</a>
+                                    ) : (
+                                        ""
+                                    )}
+                                    <a
+                                        onClick={() => {
+                                            history.push(
+                                                "/personalCenter/detailOrder/" +
+                                                    item._id
+                                            );
+                                        }}
+                                    >
+                                        订单详情
+                                    </a>
+                                    {item.status === 4 ? <a>申请售后</a> : ""}
+                                    {item.status === 4 && isAllAppraise ? (
+                                        <a
+                                            href={
+                                                "/personalCenter/goodsAppraise/" +
+                                                item._id
+                                            }
+                                        >
+                                            订单评价
+                                        </a>
+                                    ) : (
+                                        ""
+                                    )}
+                                    <a>联系客服</a>
+                                </div>
                             </div>
                         </div>
-                        <div className='btns'>
-                            {orderState === 0 ? (
-                                <a className='promptly-pay'>立即付款</a>
-                            ) : (
-                                ""
-                            )}
-                            <a>订单详情</a>
-                            {orderState === 2 ? <a>申请售后</a> : ""}
-                            {orderState === 2 ? <a>订单评价</a> : ""}
-                            <a>联系客服</a>
-                        </div>
-                    </div>
-                </div>
+                    );
+                })}
             </div>
         </div>
     );
 };
-export default MyOrder;
+export default connect(
+    ({ Login, MyOrder }) => ({ ...Login, ...MyOrder }),
+    (dispatch, ownProps) => bindActionCreators(action, dispatch)
+)(MyOrder);

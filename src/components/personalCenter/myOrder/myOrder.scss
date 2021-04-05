@@ -69,21 +69,24 @@
                 padding-bottom: 0px;
                 display: flex;
                 justify-content: space-between;
-                .shop {
-                    display: flex;
-                    justify-content: left;
-                    .shop-img {
-                        width: 80px;
-                        height: 80px;
-                    }
-                    .shop-summary {
-                        margin-left: 20px;
-                        padding: 20px 0px;
-                        p {
-                            line-height: 20px;
+                .shop-list {
+                    .shop {
+                        display: flex;
+                        justify-content: left;
+                        .shop-img {
+                            width: 80px;
+                            height: 80px;
+                        }
+                        .shop-summary {
+                            margin-left: 20px;
+                            padding: 20px 0px;
+                            p {
+                                line-height: 20px;
+                            }
                         }
                     }
                 }
+
                 .btns {
                     a {
                         display: block;
@@ -115,6 +118,14 @@
             }
         }
         .wait-goods {
+            border: 1px solid #1cd66c;
+            .title-row {
+                background: #eafff2;
+                border-bottom: 1px solid #1cd66c;
+            }
+            .title {
+                color: #1cd66c;
+            }
         }
         .have-goods {
             border: 1px solid #b0b0b0;

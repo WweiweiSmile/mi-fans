@@ -5,12 +5,13 @@ import App from "./App";
 import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
+import ScollTop from "./public/scollTop/scollTop.jsx";
 import store from "./redux/index";
-// import routes from "./router/index";
 
 ReactDOM.render(
     <Provider store={store}>
         <Router>
+            <ScollTop></ScollTop>
             <App></App>
         </Router>
     </Provider>,

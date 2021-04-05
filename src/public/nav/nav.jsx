@@ -1,27 +1,29 @@
 import "./nav.scss";
 import CategoryChildren from "./categoryChildren/categoryChildren";
 import NavChildren from "./navChildren/navChildren";
-import {actiontor} from "../../redux/nav"
+import { actiontor } from "../../redux/nav";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Input } from "antd";
-import {useState,useEffect} from "react";
-
+import { useState, useEffect } from "react";
+import { useHistory, Link } from "react-router-dom";
 const { Search } = Input;
 
 function Nav(props) {
-    console.log(props,'nav')
-    useEffect(()=>{
+    console.log(props, "nav");
+    let history = useHistory();
+    useEffect(() => {
         props.getMiPhone();
         props.getRedmiPhone();
-    },[])
+        props.getPhone();
+    }, []);
     return (
         <div className='nav'>
             <header>
                 <div className='site-header'>
                     <div className='container'>
                         <div className='header-logo'>
-                            <a href='https://www.mi.com/index.html'></a>
+                            <Link to={"/homePage"}></Link>
                         </div>
                         <div className='header-nav'>
                             <ul className='nav-list'>
@@ -31,7 +33,9 @@ function Nav(props) {
                                         <ul className='category-list'>
                                             <li className='category-item'>
                                                 <span>手机 电话卡</span>
-                                                <CategoryChildren goodsInfo={props.phoneData}></CategoryChildren>
+                                                <CategoryChildren
+                                                    goodsInfo={props.phoneData}
+                                                ></CategoryChildren>
                                             </li>
                                             <li className='category-item'>
                                                 <span>电视 盒子</span>
@@ -65,17 +69,22 @@ function Nav(props) {
                                 </li>
                                 <li className='nav-item'>
                                     小米手机
-                                    <NavChildren goodsInfo={props.miPhoneData}></NavChildren>
+                                    <NavChildren
+                                        goodsInfo={props.miPhoneData}
+                                    ></NavChildren>
                                 </li>
-                                <li className='nav-item'>Redmi 红米
-                                    <NavChildren goodsInfo={props.redmiPhoneData}></NavChildren></li>
+                                <li className='nav-item'>
+                                    Redmi 红米
+                                    <NavChildren
+                                        goodsInfo={props.redmiPhoneData}
+                                    ></NavChildren>
+                                </li>
                                 <li className='nav-item'>电视</li>
                                 <li className='nav-item'>笔记本</li>
                                 <li className='nav-item'>家电</li>
                                 <li className='nav-item'>路由器</li>
                                 <li className='nav-item'>智能硬件</li>
                                 <li className='nav-item'>智能硬件</li>
-
                             </ul>
                         </div>
                         <div className='header-search'>
@@ -88,8 +97,8 @@ function Nav(props) {
     );
 }
 export default connect(
-    ({ nav,HomePage }) => ({
-        ...nav,...HomePage
+    ({ Nav }) => ({
+        ...Nav,
     }),
     (dispatch, ownProps) => bindActionCreators(actiontor, dispatch)
 )(Nav);

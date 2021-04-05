@@ -4,11 +4,15 @@ import axios from "axios";
 
 export const actiontor = createActions({
     get_mi_phone: async () => {
-        let res = await axios.post("/cs/getMiPhone", {});
+        let res = await axios.post("/cs/nav/getMiPhone", {});
         return await res;
     },
     get_redmi_phone: async () => {
-        let res = await axios.post("/cs/getRedmiPhone", {});
+        let res = await axios.post("/cs/nav/getRedmiPhone", {});
+        return await res;
+    },
+    get_phone: async () => {
+        let res = await axios.post("/cs/nav/getPhone", {});
         return await res;
     },
 });
@@ -20,4 +24,7 @@ const miPhoneData = handleActions({
 const redmiPhoneData = handleActions({
     get_redmi_phone: (state, {payload}) => payload,
 }, {});
-export default combineReducers({miPhoneData,redmiPhoneData});
+const phoneData = handleActions({
+    get_phone: (state, {payload}) => payload,
+}, {});
+export default combineReducers({miPhoneData,redmiPhoneData,phoneData});

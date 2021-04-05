@@ -14,16 +14,20 @@
 //     };
 // }
 
-let reduxMiddleware = ({ dispatch, getState }) => (next) => (action) => {
+let reduxMiddleware = (store) => (next) => (action) => {
     if (action.payload instanceof Promise) {
+        // 当promise 为 resolve 时, 将已经resovle后的值 传递给reducer
         action.payload.then((data) => {
             return next({
                 payload: data.data,
                 type: action.type,
             });
         });
+        // promise 还不是 resolve状态时,不传值给 reducer
+        return;
     }
-    return action;
+    // 将action 传递给 reducer
+    return next(action);
 };
 
 export default reduxMiddleware;

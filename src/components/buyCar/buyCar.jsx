@@ -1,8 +1,18 @@
 import "./buyCar.scss";
 import Table from "../buyCar/table/table";
-import pageFooter from "../../public/pageFooter/pageFooter";
 import PageFooter from "../../public/pageFooter/pageFooter";
-let BuyCar = () => {
+import { connect } from "react-redux";
+import { actiontor } from "../../redux/buyCar";
+import { bindActionCreators } from "redux";
+import { useState, useEffect } from "react";
+import HeaderTab from "../../public/headerTab/headerTab";
+import { useHistory } from "react-router-dom";
+let BuyCar = (props) => {
+    let goods = [];
+    let totalPrice = 0;
+    let userId = "";
+    let history = useHistory();
+    let [rowSelectKeys, setRowSelectKeys] = useState([]);
     const columns = [
         {
             title: "全选",
@@ -15,7 +25,14 @@ let BuyCar = () => {
             title: "",
             dataIndex: "imgs",
             render(text) {
-                return <img src={text} className='shop-img'></img>;
+                return (
+                    <img
+                        src={text}
+                        width={80}
+                        height={80}
+                        className='shop-img'
+                    ></img>
+                );
             },
         },
         {
@@ -30,13 +47,30 @@ let BuyCar = () => {
             title: "数量",
             dataIndex: "num",
             align: "center",
-
-            render() {
+            render(text, row) {
                 return (
                     <span className='num'>
-                        <i className='iconfont iconjian'></i>
-                        <span className='number'>33</span>
-                        <i className='iconfont iconjia'></i>
+                        <i
+                            onClick={() => {
+                                goodsOperating(
+                                    props.userData.data[0]._id,
+                                    row,
+                                    "subtract"
+                                );
+                            }}
+                            className='iconfont iconjian'
+                        ></i>
+                        <span className='number'>{text}</span>
+                        <i
+                            onClick={() => {
+                                goodsOperating(
+                                    props.userData.data[0]._id,
+                                    row,
+                                    "add"
+                                );
+                            }}
+                            className='iconfont iconjia'
+                        ></i>
                     </span>
                 );
             },
@@ -44,16 +78,31 @@ let BuyCar = () => {
         {
             title: "小计",
             dataIndex: "sumPrice",
+            render(text, row) {
+                return <span className='sumPrice'>{text}</span>;
+            },
         },
         {
             title: "操作",
             dataIndex: "actions",
-            render() {
-                return <i className='iconfont iconx'></i>;
+            render(text, row) {
+                return (
+                    <i
+                        onClick={() => {
+                            goodsOperating(
+                                props.userData.data[0]._id,
+                                row,
+                                "remove"
+                            );
+                        }}
+                        className='iconfont iconx'
+                    ></i>
+                );
             },
         },
     ];
-    const dataSource = [
+
+    let dataSource = [
         {
             selectAll: "",
             imgs:
@@ -85,12 +134,66 @@ let BuyCar = () => {
             key: 2,
         },
     ];
+
+    useEffect(() => {
+        props.getBuyCar(userId);
+    }, [props.userData, props.goodsOperatingResult]);
+    useEffect(() => {}, [props.goodsChooseData]);
+    if (JSON.stringify(props.buyCarData) !== "{}" && props.buyCarData.data) {
+        goods = props.buyCarData.data.goods;
+    }
+    if (JSON.stringify(props.userData) !== "{}" && props.userData.data) {
+        userId = props.userData.data[0]._id;
+    }
+    // if (
+    //     JSON.stringify(props.goodsOperatingResult) !== "{}" &&
+    //     !(props.goodsOperatingResult instanceof Promise)
+    // ) {
+    //     props.getBuyCar(userId);
+    // }
+    dataSource = goods?.map((item, index) => {
+        let shopName =
+            item.title +
+            " " +
+            item.color[item.colorChoose].color +
+            " " +
+            item.vision[item.visionChoose].vision;
+        let price =
+            item.price +
+            item.color[item.colorChoose].price +
+            item.vision[item.visionChoose].price;
+        let sumPrice = price * item.buyQuantity;
+        totalPrice += sumPrice;
+        return {
+            ...item,
+            imgs: item.imgUrl,
+            shopName,
+            price,
+            sumPrice,
+            num: item.buyQuantity,
+            key: index,
+        };
+    });
+    let goodsOperating = (userId, goods, operating) => {
+        if (operating === "subtract" && goods.buyQuantity === 1) {
+            return;
+        }
+        props.goodsOperating(userId, goods, operating);
+    };
+    let rowSelectChange = (rowSelectKeys) => {
+        setRowSelectKeys(rowSelectKeys);
+    };
+
+    let settlement = () => {
+        props.goodsChoose(userId, rowSelectKeys);
+    };
     return (
         <div className='buy-car'>
+            <HeaderTab></HeaderTab>
             <div className='header'>
                 <div className='header-container'>
                     <div className='header-logo'>
-                        <a href='https://www.mi.com/index.html'></a>
+                        <a href='/homePage'></a>
                     </div>
                     <div className='header-title'>
                         <span className='my-buy-car'>我的购物车</span>
@@ -98,21 +201,15 @@ let BuyCar = () => {
                             温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算
                         </span>
                     </div>
-                    <div className='topbar'>
-                        <div className='topbar-info'>
-                            <span className='user-name'>
-                                夜里的灯光
-                                <i className='iconfont iconxia'></i>
-                            </span>
-                            <span>我的订单</span>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div className='page-main'>
                 <div className='page-main-container'>
                     <Table
-                        rowSelection={{ type: "checkbox" }}
+                        rowSelection={{
+                            selectedRowKeys: rowSelectKeys,
+                            onChange: rowSelectChange,
+                        }}
                         columns={columns}
                         dataSource={dataSource}
                         pagination={false}
@@ -121,17 +218,34 @@ let BuyCar = () => {
                         <div className='settlement-left'>
                             <span className='divide'>继续购物</span>
                             <span className='divide'>
-                                共<span className='important'>9</span>
+                                共
+                                <span className='important'>
+                                    {dataSource.length}
+                                </span>
                                 件商品，已选择
-                                <span className='important'>9</span>件
+                                <span className='important'>
+                                    {rowSelectKeys.length}
+                                </span>
+                                件
                             </span>
                         </div>
                         <div className='settlement-right'>
                             <span className='total'>
                                 合计:
-                                <span className='total-price'>6609.7</span>元
+                                <span className='total-price'>
+                                    {totalPrice}
+                                </span>
+                                元
                             </span>
-                            <span className='total-btn'>去结算</span>
+                            <span
+                                className='total-btn'
+                                onClick={() => {
+                                    settlement();
+                                    history.push("/buyCheckout");
+                                }}
+                            >
+                                去结算
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -141,4 +255,7 @@ let BuyCar = () => {
     );
 };
 
-export default BuyCar;
+export default connect(
+    ({ BuyCar, Login }) => ({ ...BuyCar, ...Login }),
+    (dispatch, ownProps) => bindActionCreators(actiontor, dispatch)
+)(BuyCar);

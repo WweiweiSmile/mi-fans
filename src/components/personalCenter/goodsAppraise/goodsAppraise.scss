@@ -1,0 +1,59 @@
+.goods-appraise {
+    padding: 50px;
+    background: #fff;
+    .title {
+        color: #757575;
+        font-size: 40px;
+        span {
+            margin-left: 20px;
+            font-size: 14px;
+        }
+    }
+    .goods-appraise-content {
+        .goods-list {
+            .goods-item {
+                padding: 20px 48px;
+                margin-top: 20px;
+                border: 1px solid #40a9ff;
+                .goods-info {
+                    display: flex;
+                    justify-content: left;
+                    align-items: center;
+                    .goods-title {
+                        span {
+                            margin-left: 10px;
+                        }
+                    }
+                    .goods-price {
+                        margin-left: 50px;
+                        span {
+                            margin-left: 10px;
+                        }
+                    }
+                    .goods-sumPrice {
+                        color: #ff6700;
+                        margin-left: 50px;
+                    }
+                }
+                .appraise-grade {
+                    .grade-title {
+                        font-size: 20px;
+                    }
+                    .grade-star {
+                        margin-left: 20px;
+                        .active {
+                            color: #ff6700;
+                        }
+                        span {
+                            cursor: pointer;
+                            i {
+                                color: #aaa;
+                                font-size: 40px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
