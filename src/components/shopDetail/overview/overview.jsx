@@ -1,13 +1,16 @@
 import Carousel from "../detailCarousel/detailCarousel";
 import LazyLoad from "react-lazyload";
-import { useState } from "react";
+import tool from "../../../public/tool/tool";
+import { useEffect, useState } from "react";
 import { Modal, message } from "antd";
 import { connect } from "react-redux";
-import { actiontor } from "../../../redux/login";
+import { actiontor as actiontorLogin } from "../../../redux/login";
+import { actiontor as actiontorShopDetail } from "../../../redux/shopDetail";
 import { bindActionCreators } from "redux";
 import "./overview.scss";
-
+let actiontor = { ...actiontorLogin, ...actiontorShopDetail };
 let Overview = (props) => {
+	console.log(props, "overview");
 	let goodsInfo = {};
 	let userData = {};
 	let productCarouselImg = [
@@ -59,6 +62,20 @@ let Overview = (props) => {
 		userData = props.userData.data[0];
 		addressCity = userData.address[addressCityCurren].city;
 	}
+	useEffect(() => {
+		return function () {
+			props.unJoinBuyCar();
+		};
+	}, []);
+	useEffect(() => {
+		if (!tool.isEmpty(props.joinBuyCarData)) {
+			if (props.joinBuyCarData?.code === 1000) {
+				message.success("加入购物车成功");
+			} else {
+				message.error("加入购物车失败");
+			}
+		}
+	}, [props.joinBuyCarData]);
 
 	const handleOk = () => {
 		setIsModalVisible(false);
@@ -283,6 +300,6 @@ let Overview = (props) => {
 };
 
 export default connect(
-	({ Login }) => ({ ...Login }),
+	({ Login, ShopDetail }) => ({ ...Login, ...ShopDetail }),
 	(dispatch, ownProps) => bindActionCreators(actiontor, dispatch)
 )(Overview);

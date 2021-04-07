@@ -41,6 +41,9 @@ let UserAppraise = (props) => {
 			date: "2021-10-07",
 		},
 	];
+	if (Object.keys(props.goodsAppraiseData).length > 0) {
+		appraises = props.goodsAppraiseData.data;
+	}
 	useEffect(() => {
 		let goodsId = props.goodsInfoData.data[0]._id;
 		props.getGoodsAppraise(goodsId);

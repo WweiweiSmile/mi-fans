@@ -16,6 +16,10 @@ export const actiontor = createActions({
 		});
 		return await res;
 	},
+	un_join_buy_car: (userId, goods) => {
+		return {};
+	},
+
 	get_goods_appraise: async (goodsId) => {
 		let res = await axios.post("/cs/detail/goodsAppraise", {
 			goodsId,
@@ -34,6 +38,7 @@ const goodsInfoData = handleActions(
 const joinBuyCarData = handleActions(
 	{
 		join_buy_car: (state, { payload }) => payload,
+		un_join_buy_car: (state, { payload }) => payload,
 	},
 	{}
 );
